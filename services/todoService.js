@@ -32,8 +32,16 @@ module.exports = {
 
     return 200;
   },
-  async updateTodo(id, task) {
-    await Todo.update({ task }, { where: { id } });
+  async updateTodo(id, { task, isDone }) {
+    const todo = await Todo.findOne({ where: { id } });
+
+    await Todo.update(
+      {
+        task: task === undefined ? todo.task : task,
+        isDone: isDone === undefined ? todo.isDone : isDone,
+      },
+      { where: { id } }
+    );
 
     const newTodo = await Todo.findOne({ where: { id } });
 

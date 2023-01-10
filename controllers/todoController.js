@@ -81,17 +81,9 @@ module.exports = {
     try {
       const { id } = req.params;
 
-      const { task } = req.body;
+      const { task, isDone } = req.body;
 
-      if (!task) {
-        res.status(400).json({
-          msg: "Task not defined",
-        });
-
-        return;
-      }
-
-      const result = await todoService.updateTodo(id, task);
+      const result = await todoService.updateTodo(id, { task, isDone });
 
       if (result === 404) {
         res.status(404).json({
