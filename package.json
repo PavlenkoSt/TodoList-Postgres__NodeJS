@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start": "nodemon index.js",
-    "start-db": "brew services start postgresql",
+    "start-db": "brew services run postgresql",
     "stop-db": "brew services stop postgresql"
   },
   "dependencies": {
